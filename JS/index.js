@@ -8,17 +8,17 @@ window.addEventListener("devicemotion", (deviceMotionEvent) => {
   console.log("gravity", accelerationIncludingGravity);
 });
 
-window.addEventListener("deviceorientation", (deviceOrientationEvent) => {
-  const { absolute, alpha, beta, gamma } = deviceOrientationEvent;
-  console.log(absolute);
-  const z = alpha;
-  const x = beta;
-  const y = gamma;
-  console.log("coordination of device", z, x, y);
-});
+// window.addEventListener("deviceorientation", (deviceOrientationEvent) => {
+//   const { absolute, alpha, beta, gamma } = deviceOrientationEvent;
+//   console.log(absolute);
+//   const z = alpha;
+//   const x = beta;
+//   const y = gamma;
+//   console.log("coordination of device", z, x, y);
+// });
 
 if (typeof Gyroscope === "function") {
-  const options = { frequency: 60, referenceFrame: "device" };
+  const options = { frequency: 1, referenceFrame: "device" };
   const gyroscope = new Gyroscope(options);
   gyroscope.addEventListener("reading", (e) => {
     x.innerText = gyroscope.x;
