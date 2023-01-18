@@ -47,9 +47,9 @@ if (typeof Accelerometer === "function") {
   const acl = new Accelerometer({ frequency: 2 });
   acl.addEventListener("reading", () => {
     const { x, y, z } = acl;
-    if (x > 0.5) console.log("X-axis Accel");
-    if (y > 0.5) console.log("Y-axis Accel");
-    if (z > 0.5) console.log("Z-axis Accel");
+    if (x > 0.5) console.log(x);
+    if (y > 0.5) console.log(y);
+    if (z > 0.5) console.log(z);
   });
 
   acl.start();
