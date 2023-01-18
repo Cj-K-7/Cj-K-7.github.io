@@ -23,4 +23,18 @@ body {
 .hidden {
     display: none;
 }
-
+#cubeContainer{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+.cube{
+    position: absolute;
+    right: auto;
+    bottom:auto;
+    width: 5px;
+    height: 5px;
+    background-color: black;
+    transition-property: bottom;
+    transition-duration: 369s;
+}

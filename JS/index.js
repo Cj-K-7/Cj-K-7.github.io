@@ -4,13 +4,12 @@ navigator.permissions.query({ name: "geolocation" }).then((result) => {
   if (result.state === "granted") {
     permission.innerText = "granted";
   } else if (result.state === "prompt") {
-    window.prompt();
+    window.confirm("Allow this page : geolocation");
   }
 });
 
-const x = document.getElementById("x");
-const y = document.getElementById("y");
-const z = document.getElementById("z");
+const xDiv = document.getElementById("xDiv");
+const yDiv = document.getElementById("yDiv");
 
 // window.addEventListener("devicemotion", (deviceMotionEvent) => {
 //   const { acceleration } = deviceMotionEvent;
@@ -42,14 +41,29 @@ const z = document.getElementById("z");
 // } else {
 //   console.log("no Gyro");
 // }
+const cubeContainer = document.getElementById("cubeContainer");
+let dropTimer;
 
 if (typeof Accelerometer === "function") {
-  const acl = new Accelerometer({ frequency: 2 });
+  const acl = new Accelerometer({ frequency: 5 });
   acl.addEventListener("reading", () => {
-    const { x, y, z } = acl;
-    if (x > 0.5) console.log(x);
-    if (y > 0.5) console.log(y);
-    if (z > 0.5) console.log(z);
+    const cubes = document.getElementsByClassName("cube");
+    const { x, y } = acl;
+    if (x > 20 || y > 15) {
+      clearTimeout(dropTimer);
+      const cube = document.createElement("div");
+      cube.classList.add("cube");
+      cube.style.top = (Math.random() * 99).toFixed(0) + "%";
+      cube.style.left = (Math.random() * 99).toFixed(0) + "%";
+      cubeContainer.appendChild(cube);
+      const dropCube = () => {
+        for (let target of cubes) {
+          target.style.bottom = "5px";
+          target.style.top = "auto";
+        }
+      };
+      dropTimer = setTimeout(dropCube, 2000);
+    }
   });
 
   acl.start();
